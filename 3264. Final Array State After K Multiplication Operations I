@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> getFinalState(vector<int>& nums, int k, int multiplier) {
+        // Min-heap banate hain jisme pairs store karte hain: (value, index)
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> minheap;
+
+        // Sare elements ko (value, index) pairs ke form mein heap mein dalte hain
+        for (int i = 0; i < nums.size(); i++) {
+            minheap.push({nums[i], i});
+        }
+
+        // 'k' baar operation karna hai
+        while (k--) {
+            // Heap se sabse chhoti value nikalte hain (min element)
+            auto [value, index] = minheap.top();
+            minheap.pop();
+
+            // Chhoti value ko multiplier se multiply karke wapas heap mein dalte hain
+            int newValue = value * multiplier;
+            minheap.push({newValue, index});
+        }
+
+        // Result array banate hain, jisme elements unke original index pe wapas rakhte hain
+        vector<int> result(nums.size());
+        while (!minheap.empty()) {
+            auto [value, index] = minheap.top();
+            minheap.pop();
+            result[index] = value; // Original index pe value set karte hain
+        }
+
+        return result;
+    }
+};
