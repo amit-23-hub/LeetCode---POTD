@@ -38,7 +38,7 @@ public:
 // }
 
 
-// space optimazation 
+// space optimazation O(1) , bs 3 variable lekr solve kr denge 
 int fib(int n){
      if(n<=1){
         return n ; 
