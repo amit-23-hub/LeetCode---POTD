@@ -7,7 +7,15 @@ public:
         // sort(g.begin() , g.end());
         // sort(s.begin() , s.end());
 
-        // for()
+        //  int i = 0, j = 0, c = 0;
+        
+        // while(i < g.size() && j < s.size()) {
+        //     if(s[j] >= g[i]) { // Cookie satisfies child's greed
+        //         c++;
+        //         i++; // Move to next child
+        //     }
+        //     j++; // Always move to next cookie
+        // }
         priority_queue<int, vector<int>, greater<int>> h1;
         priority_queue<int, vector<int>, greater<int>> h2;
         for(int i = 0 ; i<g.size() ; i++){
