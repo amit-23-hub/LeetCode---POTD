@@ -1,0 +1,15 @@
+class Solution {
+public:
+    static int numberOfAlternatingGroups(vector<int>& colors, int k) {
+        const int n=colors.size(), sz=n+k-1;
+        int ans=0, alt=1, prev=colors[0];
+        for(int i=1; i<sz; i++){
+            alt=(prev==colors[i%n])?1:alt+1;
+            ans+=(alt>=k);
+            prev=colors[i%n];
+        }
+        return  ans;
+    }
+};
+
+
