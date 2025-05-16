@@ -26,7 +26,7 @@ public:
 
             int n = q.size()  ;
 
-            for(int i = 0 ; i<n ; i++){
+            for(int i = 0 ; i<n ; i++){ // 1st root k liye 1 bar loop chalega and then root ko pop krenge then 2 and 3 inset hoga to size 2 ho jayega aur hmesha right side wala lena tha i = n-1  = 1 index wala lenge ans so on .........
 
                 TreeNode* temp = q.front() ; 
                 q.pop();
