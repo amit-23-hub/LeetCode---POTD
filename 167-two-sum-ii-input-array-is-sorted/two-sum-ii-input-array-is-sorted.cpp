@@ -1,26 +1,21 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& n, int target) {
-        int sz = n.size();
+        int left = 0, right = n.size() - 1;
 
-        for (int idx1 = 0; idx1 < sz - 1; idx1++) {
-            int toFind = target - n[idx1];
-            int low = idx1 + 1, high = sz - 1;
+        while (left < right) {
+            int sum = n[left] + n[right];
 
-            while (low <= high) {
-                int mid = low + (high - low) / 2;
-
-                if (n[mid] == toFind) {
-                    // Add 1 to convert to 1-based indexing
-                    return {idx1 + 1, mid + 1};
-                } else if (n[mid] < toFind) {
-                    low = mid + 1;
-                } else {
-                    high = mid - 1;
-                }
+            if (sum == target) {
+                // Return 1-based indices
+                return {left + 1, right + 1};
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
             }
         }
 
-        return {-1, -1}; // if no such pair exists
+        return {-1, -1}; // no valid pair found
     }
 };
