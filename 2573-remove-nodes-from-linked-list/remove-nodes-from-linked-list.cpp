@@ -11,40 +11,40 @@
 class Solution {
 public:
     ListNode* removeNodes(ListNode* head) {
+        // reverse kr denge 
+        ListNode* temp =  head ;
+        ListNode* prev = NULL ;
 
-        ListNode* temp = head   ;
-        ListNode* prev = NULL  ;
-        while(temp !=NULL){
-
-        ListNode*  nxt = temp->next;  // Next node
-        temp->next = prev;       // Reverse direction
-        prev = temp;
-        temp = nxt;
+        while(temp!=NULL){
+            ListNode* nxt = temp->next ; 
+            temp->next =  prev ; 
+            prev = temp ; 
+            temp = nxt  ; 
 
         }
-        // ab dekhna hai agr LL k node k value se less koi hoga to delete kr deng
-        ListNode* newHead = prev; // Head of reversed list
-        ListNode* curr = newHead;
-        
-        while (curr != nullptr && curr->next != nullptr) {
-            if (curr->val > curr->next->val) {
-                curr->next = curr->next->next; // Skip smaller node
-            } else {
-                curr = curr->next; 
+        // smaller ko delete
+        ListNode* newhead = prev ; 
+        ListNode*   cur = newhead ; 
+
+        while(cur!=NULL && cur->next !=NULL){
+            if(cur->val > cur->next->val){
+                cur->next = cur->next->next ; 
+            }else{
+                cur = cur->next ;
             }
         }
 
-        // Reverse back the list to restore original order
-        temp = newHead;
-        prev = nullptr;
+        // then again reverse the link;ist 
 
-        while (temp != nullptr) {
-            ListNode* nxt = temp->next;
-            temp->next = prev;
-            prev = temp;
-            temp = nxt;
+        temp = newhead ; 
+       ListNode* pre = NULL ; 
+        while(temp!=NULL){
+            ListNode* future = temp->next ; 
+            temp->next = pre ; 
+            pre = temp ; 
+            temp = future ;
         }
 
-        return prev; 
+        return pre ; 
     }
 };
