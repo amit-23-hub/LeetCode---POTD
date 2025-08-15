@@ -11,7 +11,7 @@ public:
                 orgn /= 10;
             }
             if (sum == 1) return true;   // happy number found
-            if (sum == 4) return false;  // cycle detected
+            if (sum == 4) return false;  // 4 is the magic number for detecting unhappy cycles
             orgn = sum; // continue with new number
         }
     }
