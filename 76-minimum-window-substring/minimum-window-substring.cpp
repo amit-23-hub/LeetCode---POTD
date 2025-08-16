@@ -43,34 +43,31 @@ public:
         unordered_map<char,int> need;
         for (char c : t) need[c]++;
         
-        int required = need.size();
-        int formed = 0;
         unordered_map<char,int> have;
+        int count = 0;  // kitne chars t ke abhi tak match ho gaye
+        int l = 0, len = INT_MAX, start = 0;
         
-        int l = 0, r = 0;
-        int len = INT_MAX, start = 0;
-        
-        while (r < s.size()) {
+        for (int r = 0; r < s.size(); r++) {
             have[s[r]]++;
-            if (need.count(s[r]) && have[s[r]] == need[s[r]]) {
-                formed++;
+            
+            if (need.count(s[r]) && have[s[r]] <= need[s[r]]) {
+                count++;
             }
             
-            while (l <= r && formed == required) {
+            while (count == t.size()) {  // ab window valid hai
                 if (r - l + 1 < len) {
                     len = r - l + 1;
                     start = l;
                 }
+                
                 have[s[l]]--;
                 if (need.count(s[l]) && have[s[l]] < need[s[l]]) {
-                    formed--;
+                    count--;
                 }
                 l++;
             }
-            r++;
         }
         
         return (len == INT_MAX) ? "" : s.substr(start, len);
     }
 };
-
